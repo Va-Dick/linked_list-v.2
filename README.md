@@ -26,5 +26,6 @@ Additional functions
 
 
 To run the program, you need to go to this directory and execute the Cmake function
+
     >cd /directory/....
     >cmake CMakeLists.txt
