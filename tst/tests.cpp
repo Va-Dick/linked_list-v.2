@@ -7,7 +7,6 @@
 
 using namespace std;
 
-//Функция для приведения списка к вектору (необходим для наглядности)
 template <typename T>
 vector<T> To_vector(const LinkedList<T>& list) {
 	vector<T> result;
@@ -17,7 +16,6 @@ vector<T> To_vector(const LinkedList<T>& list) {
 	return result;
 }
 
-//Проверка функции reverse
 TEST(Test_reverse, Empty_list) {
 	vector<int> vect = {};
 	LinkedList<int> list;
@@ -57,7 +55,6 @@ TEST(Test_reverse, Lists_in_a_list) {
 	EXPECT_EQ(vect[2], To_vector(list.get_head()->next->next->value));
 }
 
-//Проверка функции recursion_reverse
 TEST(Test_recursion_reverse, Empty_list) {
 	vector<int> vect = {};
 	LinkedList<int> list;
@@ -97,14 +94,11 @@ TEST(Test_recursion_reverse, Lists_in_a_list) {
 	EXPECT_EQ(vect[2], To_vector(list.get_head()->next->next->value));
 }
 
-//Проверка функций push_front и pop_front
 TEST(Test_push_and_pop_front, Test_1) {
-	//Пустой список
 	vector<int> vect = {};
 	LinkedList<int> list;
 	EXPECT_EQ(vect, To_vector(list));
 
-	//Добавление элементов в начало списка
 	vect.insert(vect.begin(), 1);
 	list.push_front(1);
 	EXPECT_EQ(vect, To_vector(list));
@@ -113,7 +107,6 @@ TEST(Test_push_and_pop_front, Test_1) {
 	list.push_front(2);
 	EXPECT_EQ(vect, To_vector(list));
 
-	//Удаление элементов из списка
 	vect.erase(vect.begin());
 	list.pop_front();
 	EXPECT_EQ(vect, To_vector(list));
@@ -122,7 +115,45 @@ TEST(Test_push_and_pop_front, Test_1) {
 	list.pop_front();
 	EXPECT_EQ(vect, To_vector(list));
 
-	//Удаление элементов из пустого списка
 	list.pop_front();
 	EXPECT_EQ(vect, To_vector(list));
+}
+
+TEST(Container_Iteration_Test, Test_1) {
+	LinkedList<int> list;
+	vector<int> vect = {};
+	stringstream ss_vect, ss_list;
+	for (auto& now : vect) {
+		ss_vect << (++now);
+	}
+
+	for (auto& now : list) {
+		ss_list << (++now);
+	}
+	EXPECT_EQ(ss_list.str(), ss_vect.str());
+}
+
+TEST(Container_Iteration_Test, Test_2) {
+	LinkedList<int> list;
+	for (int i = 1; i < 6; ++i) {
+		list.push_front(i);
+	}
+	list.reverse();
+	vector<int> vect = { 1, 2, 3, 4, 5 };
+	stringstream ss_vect, ss_list;
+	for (auto& now : vect) {
+		ss_vect << (++now);
+	}
+	for (auto& now : list) {
+		ss_list << (++now);
+	}
+	EXPECT_EQ(ss_list.str(), ss_vect.str());
+
+	for (auto& now : vect) {
+		ss_vect << (now);
+	}
+	for (auto& now : list) {
+		ss_list << (now);
+	}
+	EXPECT_EQ(ss_list.str(), ss_vect.str());
 }
