@@ -58,7 +58,7 @@ public:
 	void reverse();
 
 	//Function reverse using tail recursion
-	void recursion(Node*& current, Node*& previous);
+	void recursion(Node* current, Node*& previous);
 	void recursion_reverse();
 
 	//Additional methods and overloads
@@ -132,22 +132,20 @@ void LinkedList<T>::reverse() {
 }
 
 template <typename T>
-void LinkedList<T>::recursion(Node*& current, Node*& previous) {
+void LinkedList<T>::recursion(Node* current, Node*& previous) {
 	if (current == nullptr) {
 		return;
 	}
 	Node* next = current->next;
 	current->next = previous;
 	previous = current;
-	current = next;
-	recursion(current, previous);
+	recursion(next, previous);
 }
 
 template <typename T>
 void LinkedList<T>::recursion_reverse() {
-	Node* current = head;
 	Node* previous = nullptr;
-	recursion(current, previous);
+	recursion(head, previous);
 	head = previous;
 }
 

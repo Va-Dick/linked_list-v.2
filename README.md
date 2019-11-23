@@ -1,4 +1,7 @@
 ### Singly linked list v.2
+
+This version of the design project for the Linux operating system.
+
 Features:
 
 Uncopyable class:
@@ -33,7 +36,15 @@ Iterative functions:
 - const auto begin()const;
 - const auto end()const;
 
-To run the program, you need to go to this directory and execute the Cmake function
+Googletests libraries "https://github.com/google/googletest" are required to start the project
 
-    >cd /directory/....
-    >cmake CMakeLists.txt
+After downloading, you need to create a build folder inside to build it. Then you need to enter the created folder through the command line and enter the following commands in turn:
+
+	> cmake ..
+	> make
+	> sudo make install
+
+After which, you need to start the project:
+
+	>cd /directory/....
+	>cmake CMakeLists.txt
